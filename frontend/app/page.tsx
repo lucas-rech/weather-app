@@ -1,4 +1,4 @@
-import WeatherCard from "./components/weatherCard";
+import WeatherCard from "../components/weatherCard";
 
 export default function Home() {
   return (
