@@ -1,3 +1,4 @@
+//TODO: Quebrar em micro-componentes
 export default function SearchBar() {
     return (
         <div className="flex justify-center align-center w-full mt-6">
