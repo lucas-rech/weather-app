@@ -1,10 +1,10 @@
-//TODO: Quebrar em micro-componentes
-//TODO: Tornar o componente searchBar reutilizável usando props e criando uma propriedade-função para o botão de busca
-
 interface SearchBarProps {
     placeholderProp: string;
+    //TODO: Tornar o componente searchBar reutilizável usando props e criando uma propriedade-função para o botão de busca
+
 }
 
+//TODO: Quebrar em micro-componentes
 export default function SearchBar({placeholderProp}: SearchBarProps) {
     return (
         <div className="flex justify-center align-center w-full mt-6">
