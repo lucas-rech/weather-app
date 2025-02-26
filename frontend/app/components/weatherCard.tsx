@@ -1,3 +1,4 @@
+import { getCurrentWeather } from "../api/currentWeatherService";
 import SearchBar from "./searchBar";
 
 type WeatherImage = {
@@ -11,6 +12,9 @@ export default async function WeatherCard() {
     const images: WeatherImage[] = [
             {image: "sunny.png", alt: "sunny day"},
     ]
+
+    const weather = await getCurrentWeather("São Paulo");
+    console.log(weather);
 
     return (
         <div className="
