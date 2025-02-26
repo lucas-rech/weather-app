@@ -25,7 +25,7 @@ export default async function WeatherCard() {
             lg:w-[450] lg:h-4/5  
             rounded-xl"
         >
-            <SearchBar />            
+            <SearchBar placeholderProp="Digite uma cidade"/>            
 
             {/* teste */}
             {/* <img src={images[0].image} alt={images[0].alt}></img> */}
