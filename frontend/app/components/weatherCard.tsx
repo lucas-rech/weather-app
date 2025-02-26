@@ -1,5 +1,4 @@
 import SearchBar from "./searchBar";
-import TemperatureFrame from "./temperatureData";
 
 type WeatherImage = {
     image: string;
@@ -8,7 +7,7 @@ type WeatherImage = {
 
 //TODO: Implementar a lógica de renderização do card
 //TODO: Inserir outras imagens de climas
-export default function WeatherCard() {
+export default async function WeatherCard() {
     const images: WeatherImage[] = [
             {image: "sunny.png", alt: "sunny day"},
     ]
@@ -22,7 +21,7 @@ export default function WeatherCard() {
             lg:w-[450] lg:h-4/5  
             rounded-xl"
         >
-            <SearchBar />
+            <SearchBar />            
 
             {/* teste */}
             {/* <img src={images[0].image} alt={images[0].alt}></img> */}
