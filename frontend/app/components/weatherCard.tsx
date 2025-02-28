@@ -10,8 +10,10 @@ type WeatherImage = {
 //TODO: Inserir outras imagens de climas
 export default async function WeatherCard() {
     const images: WeatherImage[] = [
-            {image: "sunny.png", alt: "sunny day"},
+            {image: "sunny.png", alt: "dia ensolarado"},
     ]
+
+    
 
     const weather = await getCurrentWeather("São Paulo");
     console.log(weather);
@@ -25,7 +27,7 @@ export default async function WeatherCard() {
             lg:w-[450] lg:h-4/5  
             rounded-xl"
         >
-            <SearchBar placeholderProp="Digite uma cidade"/>            
+            <SearchBar placeholder="Digite uma cidade"/>            
 
             {/* teste */}
             {/* <img src={images[0].image} alt={images[0].alt}></img> */}
