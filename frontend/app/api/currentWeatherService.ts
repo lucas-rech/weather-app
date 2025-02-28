@@ -1,4 +1,4 @@
-import { getGeocode } from "./geocodeService"
+import { getGeocode, searchCityGeoLocation } from "./geocodeService"
 
 const API_KEY = process.env.API_KEY;
 
@@ -15,13 +15,6 @@ interface CurrentWeatherResponse {
         main: string;
         description: string;
     }[]
-}
-
-const searchCityGeoLocation = async (city: string) => {
-    const data = await getGeocode(city)
-    const { lat, lon } = data[0]
-
-    return { lat, lon }
 }
 
 export async function getCurrentWeather(city: string): Promise<CurrentWeatherResponse> {

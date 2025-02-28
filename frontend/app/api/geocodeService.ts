@@ -23,3 +23,10 @@ export const getGeocode = async (cityName: string): Promise<GeocodeResponse[]> =
         throw error;
     }
 };
+
+export const searchCityGeoLocation = async (city: string) => {
+    const data = await getGeocode(city)
+    const { lat, lon } = data[0]
+
+    return { lat, lon }
+};
