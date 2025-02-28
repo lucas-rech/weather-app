@@ -1,6 +1,6 @@
-import { getGeocode, searchCityGeoLocation } from "./geocodeService"
+import searchCityGeoLocation from "./geocodeService"
 
-const API_KEY = process.env.API_KEY;
+const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 
 interface CurrentWeatherResponse {
     main: {
@@ -10,11 +10,11 @@ interface CurrentWeatherResponse {
         temp_max: number;
         pressure: number;
         humidity: number;
-    },
-    weather: {
+    };
+    definition: {
         main: string;
         description: string;
-    }[]
+    };
 }
 
 export async function getCurrentWeather(city: string): Promise<CurrentWeatherResponse> {
@@ -26,11 +26,26 @@ export async function getCurrentWeather(city: string): Promise<CurrentWeatherRes
         if (!response.ok) {
             throw new Error(`API error: ${response.status}`);
         }
-        const {main, weather} = await response.json()
-        return {main, weather};
+        
+        //desestruturando respostas
+        const { main, weather } = await response.json();
+        const { temp, feels_like, temp_min, temp_max, pressure, humidity } = main;
+        const { main: weatherMain, description } = weather[0];
+
+        //Arredondando valores
+        const roundedTemp = Math.round(temp);
+        const roundedFeelsLike = Math.round(feels_like);
+        const roundedTempMin = Math.round(temp_min);
+        const roundedTempMax = Math.round(temp_max);
+
+        //criando objetos somente com propriedades que serão utilizadas
+        const mainObj = { temp: roundedTemp, feels_like: roundedFeelsLike, temp_min: roundedTempMin, temp_max: roundedTempMax, pressure, humidity };
+        const weatherObj = { main: weatherMain, description };
+
+        return { main: mainObj, definition: weatherObj };
 
     } catch (error) {
-        console.error('Error fetching current weather data:', error);
+        console.error("Erro ao buscar dados: ", error);
         throw error;
     }
 }

@@ -1,4 +1,4 @@
-const API_KEY = process.env.API_KEY;
+const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 
 interface GeocodeResponse {
     name: string;
@@ -8,11 +8,12 @@ interface GeocodeResponse {
     state?: string;
 }
 
-export const getGeocode = async (cityName: string): Promise<GeocodeResponse[]> => {
+ const getGeocode = async (cityName: string): Promise<GeocodeResponse[]> => {
     const url = `http://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(cityName)}&appid=${API_KEY}`;
     
     try {
         const response = await fetch(url);
+        console.log(response)
 
         if (!response.ok) {
             throw new Error(`API error: ${response.status}`);
@@ -24,9 +25,11 @@ export const getGeocode = async (cityName: string): Promise<GeocodeResponse[]> =
     }
 };
 
-export const searchCityGeoLocation = async (city: string) => {
+const searchCityGeoLocation = async (city: string) => {
     const data = await getGeocode(city)
     const { lat, lon } = data[0]
 
     return { lat, lon }
 };
+
+export default searchCityGeoLocation;
